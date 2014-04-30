@@ -51,6 +51,29 @@ class StudentController {
 		redirect(uri:'/')
 		}
 	
+	def profile ={
+		def s = Student.findByUsername(session?.student.username);
+		
+		
+		if(s){
+			
+			[student:s]
+			//render(uri:'/profile')
+		
+		}
+					
+	}
 	
+	def addCourses ={
+		
+		def c = Courses.findAll();
+		[Courses:c]
+	}
+	
+	def addCoursesToProfile= {
+		def s = Student.findByUsername(session?.student.username)
+		s.course1 = params.course_id;
+	
+		}
 	
 }
